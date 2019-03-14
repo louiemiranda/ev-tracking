@@ -7,7 +7,11 @@ Built using Laravel, a web application framework with expressive, elegant syntax
 
 ## Installation
 
-@TODO
+- You will be given the needed .env files to run this application. Please save on the app root folder.
+- Run `composer install`
+- Run `php artisan key:generate` to generate the app key if needed.
+- Run `php artisan migrate` for the tables
+- Run `php artisan db:seed` for the seeder, as needed.
 
 ## Information
 
