@@ -7,6 +7,9 @@ use App\Http\Requests;
 use App\Tracking;
 use App\Http\Resources\Backend as BackendResource;
 
+use App\Imports\TrackingImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class BackendController extends Controller
 {
     /**
@@ -92,5 +95,12 @@ class BackendController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function import() 
+    {
+        Excel::import(new TrackingImport, 'data.csv');
+
+        return ['status' => 'success'];
     }
 }

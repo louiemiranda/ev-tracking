@@ -29,3 +29,6 @@ Route::get('backend/tracking/{tracking_code}', 'BackendController@show');
 
 // Create
 Route::put('backend/tracking', 'BackendController@store');
+
+// Import
+Route::get('backend/import', 'BackendController@import');
