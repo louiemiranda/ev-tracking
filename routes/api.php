@@ -16,3 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('hello', function () {
+    return 'Hello EV-Tracking';
+});
+
+// List all
+Route::get('backend/tracking', 'BackendController@index');
+
+// List specific
+Route::get('backend/tracking/{reference_code}', 'BackendController@show');
