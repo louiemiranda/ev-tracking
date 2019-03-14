@@ -1806,26 +1806,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       trackings: [],
-      tracking: {
-        reference_ode: ''
-      }
+      tracking_code: '',
+      delivery_date: ''
     };
   },
-  created: function created() {
-    this.fetchTracking();
-  },
   methods: {
-    fetchTracking: function fetchTracking() {
+    fetchTracking: function fetchTracking(tracking_code) {
       var _this = this;
 
-      fetch('api/backend/tracking').then(function (res) {
+      fetch('api/backend/tracking/' + tracking_code).then(function (res) {
         return res.json();
       }).then(function (res) {
-        _this.trackings = res.data;
+        console.log(res.data);
+        _this.delivery_date = res.data.delivery_date;
       });
     }
   },
@@ -36925,19 +36928,57 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h2", [_vm._v("Tracking")]),
+  return _c("div", [
+    _c("h2", [_vm._v("Tracking")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "exampleInputEmail1" } }, [_vm._v("Search")]),
       _vm._v(" "),
-      _vm._l(_vm.trackings, function(tracking) {
-        return _c("div", { key: tracking.id, staticClass: "card card-body" }, [
-          _c("p", [_vm._v(_vm._s(tracking.reference_code))])
-        ])
-      })
-    ],
-    2
-  )
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.tracking_code,
+            expression: "tracking_code"
+          }
+        ],
+        attrs: { placeholder: "Tracking Code" },
+        domProps: { value: _vm.tracking_code },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.tracking_code = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.fetchTracking(_vm.tracking_code)
+            }
+          }
+        },
+        [_vm._v("search")]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card card-body mb-2" }, [
+      _c("p", [
+        _vm._v(
+          "#" +
+            _vm._s(_vm.tracking_code) +
+            " will be delivered on " +
+            _vm._s(_vm.delivery_date)
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
