@@ -25,4 +25,7 @@ Route::get('hello', function () {
 Route::get('backend/tracking', 'BackendController@index');
 
 // List specific
-Route::get('backend/tracking/{reference_code}', 'BackendController@show');
+Route::get('backend/tracking/{tracking_code}', 'BackendController@show');
+
+// Create
+Route::put('backend/tracking', 'BackendController@store');

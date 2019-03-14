@@ -50,12 +50,12 @@ class BackendController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($reference_code)
+    public function show($tracking_code)
     {
         // Retrieve by id
         // $tracking = Tracking::findOrFail($id);
 
-        $tracking = Tracking::where('reference_code', '=', $reference_code)->firstOrFail();
+        $tracking = Tracking::where('reference_code', '=', $tracking_code)->firstOrFail();
 
         return new BackendResource($tracking);
     }
